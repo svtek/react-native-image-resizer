@@ -56,6 +56,11 @@ CGColorSpaceRef	GetDeviceRGBColorSpace() {
 
 float GetScaleForProportionalResize( CGSize theSize, CGSize intoSize, bool onlyScaleDown, bool maximize )
 {
+    // if size is (0, 0) don't scale the image
+    if ((intoSize.width <= 0) && (intoSize.height <= 0)) {
+        return 1;
+    }
+
     float	sx = theSize.width;
     float	sy = theSize.height;
     float	dx = intoSize.width;
